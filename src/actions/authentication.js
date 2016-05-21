@@ -1,5 +1,6 @@
 import * as types from './types';
 import axios from 'axios';
+import { banksFetch } from './banks';
 
 function loginStart() {
   return {
@@ -33,6 +34,7 @@ export function login(fields) {
         if(!response.data.ok) {
           return dispatch(loginError("Login attempt failed."));
         }
+        dispatch(banksFetch());
         dispatch(loginSuccess());
       })
       .catch(function(error) {

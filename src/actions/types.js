@@ -8,5 +8,5 @@ export const LOGOUT = 'logout';
 
 export const BANKS_FETCH = "banks_fetch";
 export const BANKS_FETCH_START = "banks_fetch_start";
-export const BANKS_FETCH_SUCCESS = "banks_fetch_start";
-export const BANKS_FETCH_ERROR = "banks_fetch_start";
+export const BANKS_FETCH_SUCCESS = "banks_fetch_success";
+export const BANKS_FETCH_ERROR = "banks_fetch_error";

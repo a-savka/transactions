@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import Header from '../header';
 import FieldContainer from '../common/field_container';
+import BankSelect from '../banks/bank_select';
 
 require('../../stylesheets/transactions/add.scss');
 
@@ -29,11 +30,8 @@ class AddTransaction extends Component {
             </FieldContainer>
 
             <FieldContainer label="Bank" field={ bankId }>
-              <select className="field-input" type="text" { ...bankId }>
-                <option value="-1">Loading...</option>
-              </select>
+              <BankSelect field={ bankId } />
             </FieldContainer>
-
 
             <FieldContainer customClassName="for-controls">
               <button type="submit">Save Transaction</button>
