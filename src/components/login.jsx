@@ -49,7 +49,7 @@ class Login extends Component {
               <input className="field-input" type="password" { ...password } />
             </FieldContainer>
 
-            <FieldContainer customClassName="field-container for-controls">
+            <FieldContainer customClassName="for-controls">
               <button type="submit">Login</button>
             </FieldContainer>
 
