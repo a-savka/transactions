@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import { logout } from '../actions/authentication.js';
 
 require('../stylesheets/header.scss');
 
-export default class Header extends Component {
+class Header extends Component {
+
+  logout(event) {
+    event.preventDefault();
+    this.props.logout();
+  }
 
   render() {
 
@@ -16,7 +23,9 @@ export default class Header extends Component {
           <li>
             <Link to='/add'>Add Transaction</Link>
           </li>
-          <li><a href='/'>Logout</a></li>
+          <li>
+            <a href='/' onClick={ this.logout.bind(this) }>Logout</a>
+          </li>
         </ul>
       </div>
     )
@@ -24,3 +33,5 @@ export default class Header extends Component {
   }
 
 }
+
+export default connect(null, { logout })(Header);

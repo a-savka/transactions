@@ -11,10 +11,6 @@ import requireAuthentication from './components/require_authentication';
 
 require('./stylesheets/main.scss');
 
-
-/* Temporary !!!!! */
-const reducers = state => state;
-
 document.addEventListener("DOMContentLoaded", function() {
   ReactDOM.render(
     <Provider store={ store }>

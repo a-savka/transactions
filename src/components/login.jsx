@@ -7,6 +7,24 @@ require('../stylesheets/login.scss');
 
 class Login extends Component {
 
+  static contextTypes = {
+    router: React.PropTypes.object
+  }
+
+  checkAuthentication(props) {
+    if(props.authenticated) {
+      this.context.router.push("/");
+    }
+  }
+
+  componentWillMount() {
+    this.checkAuthentication(this.props);
+  }
+
+  componentWillUpdate(nextProps) {
+    this.checkAuthentication(nextProps);
+  }
+
   onSubmit(fields) {
     this.props.login(fields);
   }
@@ -58,7 +76,6 @@ function validate(values) {
 
   return errors;
 }
-
 
 export default reduxForm({
   form: "loginForm",

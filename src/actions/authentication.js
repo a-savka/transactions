@@ -1,14 +1,36 @@
 import * as types from './types';
 import axios from 'axios';
 
+function loginStart() {
+  return {
+    type: types.LOGIN_START
+  };
+}
+
+function loginSuccess() {
+  return {
+    type: types.LOGIN_SUCCESS
+  };
+}
+
+function loginError(payload) {
+  return {
+    type: types.LOGIN_ERROR,
+    payload
+  };
+}
+
+
 export function login(fields) {
   return (dispatch) => {
 
     dispatch(loginStart());
 
-    axios.post('/api/ok.json', fields)
+    // axios.post('/api/login', fields)
+    // Simulating request with get, can't post to static file
+    axios.get('/api/ok.json?login')
       .then(function(response) {
-        if(!response.ok) {
+        if(!response.data.ok) {
           return dispatch(loginError("Login attempt failed."));
         }
         dispatch(loginSuccess());
@@ -20,21 +42,11 @@ export function login(fields) {
   };
 }
 
-export function loginStart() {
-  return {
-    type: types.LOGIN_START
-  };
-}
 
-export function loginSuccess() {
-  return {
-    type: types.LOGIN_SUCCESS
-  };
-}
-
-export function loginError(payload) {
-  return {
-    type: types.LOGIN_ERROR,
-    payload
-  };
+export function logout() {
+    // we don't need anything from response
+    axios.get('/api/ok.json?logout');
+    return {
+      type: types.LOGOUT
+    }
 }

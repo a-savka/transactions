@@ -1,5 +1,7 @@
 import React from 'react';
 
+require('../../stylesheets/common/field_container.scss');
+
 function getFieldContainerClass(field, baseClassName) {
   return `${baseClassName}${ field && field.touched && field.invalid ? ' has-error' : '' }`;
 }
