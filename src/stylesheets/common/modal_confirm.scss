@@ -74,3 +74,12 @@
     from {top: -300px; opacity: 0}
     to {top: 0; opacity: 1}
 }
+
+
+@media all and (max-width: 640px) {
+
+  .modal-content {
+    width: 100%;
+  }
+
+}
