@@ -3,12 +3,35 @@
   table {
     width: 900px;
     margin: 0 auto;
+    border-spacing: 10px 0;
 
     th, td {
       padding: 5px;
     }
 
+    th {
+      border-bottom: 1px solid tomato;
+    }
+
+    td, td button {
+      font-size: 12px;
+    }
+
+    td.numeric {
+      text-align: right;
+    }
+
+    tr.odd {
+      background-color: #ffeeee;
+    }
+
+
   }
+
+  .loading {
+    margin-left: 20px;
+  }
+
 
 }
 

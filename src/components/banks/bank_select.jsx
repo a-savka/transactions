@@ -9,7 +9,7 @@ class BankSelect extends Component {
       return <option key={ -1 } value="-1">Loading...</option>
     }
 
-    let banks = this.props.items.map(
+    let banks = [...this.props.items.values()].map(
       bank => <option key={ bank.id } value={ bank.id }>{ bank.name }</option>
     );
 

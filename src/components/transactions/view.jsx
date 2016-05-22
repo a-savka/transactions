@@ -8,13 +8,13 @@ class ViewTransactions extends Component {
 
 
   renderDataRows() {
-    let rows = this.props.transactions.items.map( transaction => (
-      <tr key={ transaction.id }>
-        <td>{ transaction.id }</td>
-        <td>{ transaction.amount }</td>
-        <td>{ transaction.bankId }</td>
+    let rows = this.props.transactions.items.map( (transaction, index) => (
+      <tr key={ transaction.id } className={ (index % 2 == 0) ? 'even' : 'odd'  }>
+        <td className="numeric">{ transaction.id }</td>
+        <td className="numeric">{ transaction.amount }</td>
+        <td>{ this.props.banks.items.get(transaction.bankId).name }</td>
         <td>
-          <button type="button">Delete</button>
+          <button type="button">X</button>
         </td>
       </tr>
     ));
@@ -25,7 +25,7 @@ class ViewTransactions extends Component {
   renderDataTable() {
 
     if(this.props.transactions.loading || this.props.banks.loading) {
-      return <span>Loading, please wait...</span>
+      return <span className="loading">Loading, please wait...</span>
     }
 
     return (
@@ -36,8 +36,8 @@ class ViewTransactions extends Component {
           <tr>
             <th width="10%">ID</th>
             <th width="35%">Amount</th>
-            <th width="45%">Bank</th>
-            <th width="10%"></th>
+            <th width="50%">Bank</th>
+            <th width="5%"></th>
           </tr>
         </thead>
 
@@ -72,7 +72,6 @@ class ViewTransactions extends Component {
 
 
 function mapStateToProps({ transactions, banks }) {
-  console.log(transactions);
   return {
     transactions,
     banks

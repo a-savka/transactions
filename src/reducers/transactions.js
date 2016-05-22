@@ -15,8 +15,6 @@ export default function(state = INITIAL_STATE, action) {
       };
 
     case actionTypes.TRANSACTIONS_FETCH_SUCCESS:
-      console.log("Transactons fetch success reducer");
-      console.log(action);
       return {
         ...state,
         loading: false,

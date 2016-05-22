@@ -6,12 +6,12 @@
   },
   {
     "id": 2,
-    "amount": 20.02,
+    "amount": 202.02,
     "bankId": 2
   },
   {
     "id": 3,
-    "amount": 30.03,
+    "amount": 3003.03,
     "bankId": 3
   },
   {
@@ -21,7 +21,7 @@
   },
   {
     "id": 5,
-    "amount": 50.05,
+    "amount": 505.05,
     "bankId": 4
   }
 ]

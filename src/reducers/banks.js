@@ -1,7 +1,7 @@
 import * as actionTypes from '../actions/types';
 
 const INITIAL_STATE = {
-  items: [],
+  items: new Map(),
   loading: false
 }
 
@@ -24,7 +24,7 @@ export default function banksReducer(state = INITIAL_STATE, action) {
     case actionTypes.BANKS_FETCH_SUCCESS:
       return {
         loading: false,
-        items: action.payload
+        items: new Map(action.payload.map(item => [item.id, item]))
       }
 
   }
