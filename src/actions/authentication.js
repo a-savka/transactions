@@ -1,6 +1,7 @@
 import * as types from './types';
 import axios from 'axios';
 import { banksFetch } from './banks';
+import { transactionsFetch } from './transactions';
 
 function loginStart() {
   return {
@@ -35,6 +36,7 @@ export function login(fields) {
           return dispatch(loginError("Login attempt failed."));
         }
         dispatch(banksFetch());
+        dispatch(transactionsFetch());
         dispatch(loginSuccess());
       })
       .catch(function(error) {
