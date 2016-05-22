@@ -21,7 +21,7 @@ class BankSelect extends Component {
   render() {
 
     return (
-      <select className="field-input" { ...this.props.field }>
+      <select disabled={ this.props.disabled } className="field-input" { ...this.props.field }>
         { this.renderOptions() }
       </select>
     );

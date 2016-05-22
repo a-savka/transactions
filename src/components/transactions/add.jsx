@@ -13,6 +13,25 @@ class AddTransaction extends Component {
     this.props.transactionsAdd(fields);
   }
 
+  isDisabled() {
+   return this.props.loading;
+  }
+
+  getSubmitButtonIcon() {
+    return this.isDisabled() ? "fa fa-spin fa-spinner" : "fa fa-check"
+  }
+
+  renderError() {
+    if(this.props.errorMessage) {
+      return (
+        <FieldContainer>
+          <span>{ this.props.errorMessage }</span>
+        </FieldContainer>
+      )
+    }
+    return "";
+  }
+
   render() {
 
     const { fields: { amount, bankId }, handleSubmit } = this.props;
@@ -26,16 +45,18 @@ class AddTransaction extends Component {
 
             <h3 className="page-head">Add Transaction</h3>
 
+            { this.renderError() }
+
             <FieldContainer label="Amount" field={ amount }>
-              <input className="field-input" type="text" { ...amount } />
+              <input disabled={ this.isDisabled() } className="field-input" type="text" { ...amount } />
             </FieldContainer>
 
             <FieldContainer label="Bank" field={ bankId }>
-              <BankSelect field={ bankId } />
+              <BankSelect disabled={ this.isDisabled() } field={ bankId } />
             </FieldContainer>
 
             <FieldContainer customClassName="for-controls">
-              <button type="submit"><i className="fa fa-check"></i>&nbsp;Save Transaction</button>
+              <button disabled={ this.isDisabled() } type="submit"><i className={ this.getSubmitButtonIcon() }></i>&nbsp;Save Transaction</button>
             </FieldContainer>
 
           </form>
@@ -72,4 +93,4 @@ export default reduxForm({
   form: "addTransactionForm",
   fields: ["amount", "bankId"],
   validate
-}, null, {transactionsAdd} )(AddTransaction);
+}, state => state.transactions, {transactionsAdd} )(AddTransaction);

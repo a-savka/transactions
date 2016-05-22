@@ -37,6 +37,13 @@ button:active {
   border: 1px solid white;
 }
 
+button[disabled], button[disabled]:hover, button[disabled]:active {
+  cursor: default;
+  background-color: #eeeeee;
+  color: #999999;
+  border-color: #999999;
+}
+
 
 button::-moz-focus-inner {
   border: 0;

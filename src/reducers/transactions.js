@@ -15,6 +15,12 @@ export default function(state = INITIAL_STATE, action) {
       };
 
     case actionTypes.TRANSACTIONS_FETCH_SUCCESS:
+
+      // Simulate server side storage
+      if(localStorage.transactions) {
+        action.payload = JSON.parse(localStorage.transactions);
+      }
+
       return {
         ...state,
         loading: false,
@@ -32,10 +38,15 @@ export default function(state = INITIAL_STATE, action) {
     case actionTypes.TRANSACTIONS_ADD_START:
       return {
         ...state,
-        loading: true
+        loading: true,
+        errorMessage: ""
       }
 
     case actionTypes.TRANSACTIONS_ADD_SUCCESS:
+
+      // Simulate server side storage
+      localStorage.transactions = JSON.stringify([...state.items, action.payload]);
+
       return {
         ...state,
         loading: false,

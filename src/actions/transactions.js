@@ -1,5 +1,6 @@
 import * as types from './types';
 import axios from 'axios';
+import { browserHistory } from 'react-router';
 
 // nextTransactionId used to simulate autoincrementing transaction id from server
 let nextTransactionId = 0;
@@ -96,6 +97,7 @@ export function transactionsAdd(fields) {
         // End of code to simulate data received from server
 
         dispatch(transactionsAddSuccess(response.data));
+        browserHistory.push("/");
       })
       .catch(function(error) {
         dispatch(transactionsAddError("Error, transaction can't be added."));
