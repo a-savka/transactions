@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from '../header';
+import DeleteConfirm from './delete_confirm';
+import { transactionsDeleteModalShow } from '../../actions/transactions';
 
 require('../../stylesheets/transactions/view.scss');
 
@@ -14,7 +16,7 @@ class ViewTransactions extends Component {
         <td className="numeric">{ transaction.amount }</td>
         <td>{ this.props.banks.items.get(transaction.bankId).name }</td>
         <td>
-          <button type="button"><i className="fa fa-close"></i></button>
+          <button type="button" onClick={ () => this.props.confirm(transaction) }><i className="fa fa-close"></i></button>
         </td>
       </tr>
     ));
@@ -63,6 +65,9 @@ class ViewTransactions extends Component {
           { this.renderDataTable() }
 
         </div>
+
+        <DeleteConfirm />
+
       </div>
 
     );
@@ -79,4 +84,6 @@ function mapStateToProps({ transactions, banks }) {
 }
 
 
-export default connect(mapStateToProps)(ViewTransactions);
+export default connect(mapStateToProps, {
+  confirm: transactionsDeleteModalShow
+})(ViewTransactions);

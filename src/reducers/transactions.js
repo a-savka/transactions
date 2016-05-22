@@ -16,11 +16,6 @@ export default function(state = INITIAL_STATE, action) {
 
     case actionTypes.TRANSACTIONS_FETCH_SUCCESS:
 
-      // Simulate server side storage
-      if(localStorage.transactions) {
-        action.payload = JSON.parse(localStorage.transactions);
-      }
-
       return {
         ...state,
         loading: false,
@@ -59,6 +54,31 @@ export default function(state = INITIAL_STATE, action) {
         loading: false,
         errorMessage: action.payload
       }
+
+      case actionTypes.TRANSACTIONS_DELETE_MODAL_SHOW:
+        return {
+          ...state,
+          deleteItem: action.payload
+        }
+
+      case actionTypes.TRANSACTIONS_DELETE_MODAL_HIDE:
+        return {
+          ...state,
+          deleteItem: null
+        }
+
+      case actionTypes.TRANSACTIONS_DELETE_SUCCESS:
+        const newItems = [ ...state.items.filter( item => item.id != action.payload ) ]
+
+        // Simulate server side storage
+        localStorage.transactions = JSON.stringify(newItems);
+
+        return {
+          ...state,
+          items: newItems
+        }
+
+
 
 
 

@@ -32,10 +32,15 @@ export function transactionsFetch() {
 
     dispatch(transactionsFetchStart());
 
-    axios.get('/api/transactions.json')
+    axios.get('/api/transactions.json?fetch')
       .then(function(response) {
         if(!response.data) {
           return dispatch(transactionsFetchError("Transactions can't be loaded."));
+        }
+
+        // Simulate server side data storage
+        if(localStorage.transactions) {
+          response.data = JSON.parse(localStorage.transactions);
         }
 
         // Line below needed for transaction id simulation
@@ -82,7 +87,7 @@ export function transactionsAdd(fields) {
 
     // axios.post('/api/transactions', fields)
     // simulate ajax request with get to ok.json
-    axios.get('/api/ok.json')
+    axios.get('/api/ok.json?addTransaction')
       .then(function(response) {
         if(!response.data.ok) {
           return dispatch(transactionsAddError("Error, transaction can't be added."));
@@ -101,6 +106,64 @@ export function transactionsAdd(fields) {
       })
       .catch(function(error) {
         dispatch(transactionsAddError("Error, transaction can't be added."));
+      });
+
+  };
+}
+
+
+export function transactionsDeleteModalShow(transaction) {
+  return {
+    type: types.TRANSACTIONS_DELETE_MODAL_SHOW,
+    payload: transaction
+  }
+}
+
+export function transactionsDeleteModalHide() {
+  return {
+    type: types.TRANSACTIONS_DELETE_MODAL_HIDE
+  }
+}
+
+
+function transactionsDeleteStart() {
+  return {
+    type: types.TRANSACTIONS_DELETE_START
+  };
+}
+
+function transactionsDeleteSuccess(payload) {
+  return {
+    type: types.TRANSACTIONS_DELETE_SUCCESS,
+    payload
+  };
+}
+
+function transactionsDeleteError(payload) {
+  return {
+    type: types.TRANSACTIONS_DELETE_ERROR,
+    payload
+  };
+}
+
+export function transactionsDelete(transaction) {
+
+  return (dispatch) => {
+
+    dispatch(transactionsDeleteModalHide());
+    dispatch(transactionsDeleteStart());
+
+    // axios.delete('/api/transactions/' + transaction.id, fields)
+    // simulate ajax request with get to ok.json
+    axios.get('/api/ok.json?deleteTransaction')
+      .then(function(response) {
+        if(!response.data.ok) {
+          return dispatch(transactionsAddError("Error, transaction can't be deleted."));
+        }
+        dispatch(transactionsDeleteSuccess(transaction.id));
+      })
+      .catch(function(error) {
+        dispatch(transactionsAddError("Error, transaction can't be deleted."));
       });
 
   };

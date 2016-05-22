@@ -23,6 +23,9 @@ export const TRANSACTIONS_ADD_START = "transactions_add_start";
 export const TRANSACTIONS_ADD_SUCCESS = "transactions_add_success";
 export const TRANSACTIONS_ADD_ERROR = "transactions_add_error";
 
+export const TRANSACTIONS_DELETE_MODAL_SHOW = "transactions_delete_modal_show";
+export const TRANSACTIONS_DELETE_MODAL_HIDE = "transactions_delete_modal_hide";
+
 export const TRANSACTIONS_DELETE = "transactions_delete";
 export const TRANSACTIONS_DELETE_START = "transactions_delete_start";
 export const TRANSACTIONS_DELETE_SUCCESS = "transactions_delete_success";
