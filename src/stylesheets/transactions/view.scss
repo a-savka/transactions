@@ -1,3 +1,5 @@
+@import "../variables";
+
 .view-transactions {
 
   table {
@@ -10,7 +12,7 @@
     }
 
     th {
-      border-bottom: 1px solid tomato;
+      border-bottom: 1px solid $primary-color;
     }
 
     td, td button {
@@ -22,7 +24,7 @@
     }
 
     tr.odd {
-      background-color: #ffeeee;
+      background-color: $highlight-color;
     }
 
 

@@ -58,7 +58,7 @@ class ViewTransactions extends Component {
       <div>
         <Header />
         <div className="view-transactions content">
-          <h3 className="page-head">View Transaction</h3>
+          <h3 className="page-head">View Transactions</h3>
 
           { this.renderDataTable() }
 
