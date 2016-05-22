@@ -16,7 +16,7 @@ class DeleteConfirm extends Component {
 
     return(
       <ModalConfirm
-        text={ `A you sure to delete this transaction with amount of ${tran.amount}? ` }
+        text={ `A you sure to delete this transaction with amount of ${ tran.amount.toFixed(2) }? ` }
         onConfirmed={ () => this.props.onConfirmed(tran) }
         onClosed={ () => this.props.onClosed() }
         />

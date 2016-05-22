@@ -13,7 +13,7 @@ class ViewTransactions extends Component {
     let rows = this.props.transactions.items.map( (transaction, index) => (
       <tr key={ transaction.id } className={ (index % 2 == 0) ? 'even' : 'odd'  }>
         <td className="numeric">{ transaction.id }</td>
-        <td className="numeric">{ transaction.amount }</td>
+        <td className="numeric">{ transaction.amount.toFixed(2) }</td>
         <td>{ this.props.banks.items.get(transaction.bankId).name }</td>
         <td>
           <button type="button" onClick={ () => this.props.confirm(transaction) }><i className="fa fa-close"></i></button>
