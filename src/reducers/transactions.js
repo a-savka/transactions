@@ -29,6 +29,28 @@ export default function(state = INITIAL_STATE, action) {
       };
 
 
+    case actionTypes.TRANSACTIONS_ADD_START:
+      return {
+        ...state,
+        loading: true
+      }
+
+    case actionTypes.TRANSACTIONS_ADD_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        items: [...state.items, action.payload]
+      }
+
+    case actionTypes.TRANSACTIONS_ADD_ERROR:
+      return {
+        ...state,
+        loading: false,
+        errorMessage: action.payload
+      }
+
+
+
   }
   return state;
 }

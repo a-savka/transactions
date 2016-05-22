@@ -18,13 +18,13 @@ class Header extends Component {
       <div className="header">
         <ul className="navigation">
           <li>
-            <Link to="/">View Transaction</Link>
+            <Link to="/"><i className="fa fa-list"></i>&nbsp;View Transaction</Link>
           </li>
           <li>
-            <Link to='/add'>Add Transaction</Link>
+            <Link to='/add'><i className="fa fa-plus"></i>&nbsp;Add Transaction</Link>
           </li>
           <li>
-            <a href='/' onClick={ this.logout.bind(this) }>Logout</a>
+            <a href='/' onClick={ this.logout.bind(this) }><i className="fa fa-sign-out"></i>&nbsp;Logout</a>
           </li>
         </ul>
       </div>

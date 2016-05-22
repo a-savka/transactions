@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import Header from '../header';
+import { transactionsAdd } from '../../actions/transactions';
 import FieldContainer from '../common/field_container';
 import BankSelect from '../banks/bank_select';
 
@@ -8,8 +9,8 @@ require('../../stylesheets/transactions/add.scss');
 
 class AddTransaction extends Component {
 
-  onSubmit() {
-
+  onSubmit(fields) {
+    this.props.transactionsAdd(fields);
   }
 
   render() {
@@ -34,7 +35,7 @@ class AddTransaction extends Component {
             </FieldContainer>
 
             <FieldContainer customClassName="for-controls">
-              <button type="submit">Save Transaction</button>
+              <button type="submit"><i className="fa fa-check"></i>&nbsp;Save Transaction</button>
             </FieldContainer>
 
           </form>
@@ -71,4 +72,4 @@ export default reduxForm({
   form: "addTransactionForm",
   fields: ["amount", "bankId"],
   validate
-}, null, null)(AddTransaction);
+}, null, {transactionsAdd} )(AddTransaction);

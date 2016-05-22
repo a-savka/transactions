@@ -14,7 +14,7 @@ class ViewTransactions extends Component {
         <td className="numeric">{ transaction.amount }</td>
         <td>{ this.props.banks.items.get(transaction.bankId).name }</td>
         <td>
-          <button type="button">X</button>
+          <button type="button"><i className="fa fa-close"></i></button>
         </td>
       </tr>
     ));

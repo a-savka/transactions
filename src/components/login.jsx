@@ -50,7 +50,7 @@ class Login extends Component {
             </FieldContainer>
 
             <FieldContainer customClassName="for-controls">
-              <button type="submit">Login</button>
+              <button type="submit"><i className="fa fa-sign-in"></i>&nbsp;Login</button>
             </FieldContainer>
 
           </form>
