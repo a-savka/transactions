@@ -5,7 +5,7 @@ const INITIAL_STATE = {
   loading: false
 }
 
-export default function(state = {}, action) {
+export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
 
     case actionTypes.TRANSACTIONS_FETCH_START:
@@ -15,6 +15,8 @@ export default function(state = {}, action) {
       };
 
     case actionTypes.TRANSACTIONS_FETCH_SUCCESS:
+      console.log("Transactons fetch success reducer");
+      console.log(action);
       return {
         ...state,
         loading: false,

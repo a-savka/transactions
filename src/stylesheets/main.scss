@@ -14,3 +14,27 @@ h3.page-head {
   margin-top: 40px;
   margin-bottom: 30px;
 }
+
+button {
+  color: tomato;
+  background-color: white;
+  border: 1px solid tomato;
+  padding: 6px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ffeeee;
+}
+
+button:active {
+  background-color: tomato;
+  color: white;
+  border: 1px solid white;
+}
+
+
+button::-moz-focus-inner {
+  border: 0;
+}

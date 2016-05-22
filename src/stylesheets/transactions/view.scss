@@ -1,0 +1,24 @@
+.view-transactions {
+
+  table {
+    width: 900px;
+    margin: 0 auto;
+
+    th, td {
+      padding: 5px;
+    }
+
+  }
+
+}
+
+@media all and (max-width: 920px) {
+  .view-transactions {
+
+    table {
+      width: 100%;
+      padding: 0 10px;
+    }
+
+  }
+}
