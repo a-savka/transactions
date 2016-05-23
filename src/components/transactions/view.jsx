@@ -39,7 +39,7 @@ class ViewTransactions extends Component {
                 <tbody>
 
                   <For each="transaction" index="index" of={ this.props.transactions.items }>
-                    <tr key={ transaction.id } className={ (index % 2 == 0) ? 'even' : 'odd'  }>
+                    <tr key={ transaction.id }>
                       <td className="numeric">{ transaction.id }</td>
                       <td className="numeric">{ transaction.amount.toFixed(2) }</td>
                       <td>{ this.props.banks.items.get(transaction.bankId).name }</td>

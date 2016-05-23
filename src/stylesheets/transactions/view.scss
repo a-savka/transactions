@@ -23,17 +23,15 @@
       text-align: right;
     }
 
-    tr.odd {
+    tbody tr:nth-child(even) {
       background-color: $highlight-color;
     }
-
 
   }
 
   .loading {
     margin-left: 20px;
   }
-
 
 }
 
