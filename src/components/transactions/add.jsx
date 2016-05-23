@@ -21,17 +21,6 @@ class AddTransaction extends Component {
     return this.isDisabled() ? "fa fa-spin fa-spinner" : "fa fa-check";
   }
 
-  renderError() {
-    if(this.props.errorMessage) {
-      return (
-        <FieldContainer>
-          <span>{ this.props.errorMessage }</span>
-        </FieldContainer>
-      );
-    }
-    return "";
-  }
-
   render() {
 
     const { fields: { amount, bankId }, handleSubmit } = this.props;
@@ -45,7 +34,11 @@ class AddTransaction extends Component {
 
             <h3 className="page-head">Add Transaction</h3>
 
-            { this.renderError() }
+            <If condition={ !!this.props.errorMessage }>
+              <FieldContainer>
+                <span>{ this.props.errorMessage }</span>
+              </FieldContainer>
+            </If>
 
             <FieldContainer label="Amount" field={ amount }>
               <input disabled={ this.isDisabled() } className="field-input" type="text" { ...amount } />

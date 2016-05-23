@@ -8,51 +8,6 @@ require('../../stylesheets/transactions/view.scss');
 
 class ViewTransactions extends Component {
 
-
-  renderDataRows() {
-    let rows = this.props.transactions.items.map( (transaction, index) => (
-      <tr key={ transaction.id } className={ (index % 2 == 0) ? 'even' : 'odd'  }>
-        <td className="numeric">{ transaction.id }</td>
-        <td className="numeric">{ transaction.amount.toFixed(2) }</td>
-        <td>{ this.props.banks.items.get(transaction.bankId).name }</td>
-        <td>
-          <button type="button" onClick={ () => this.props.confirm(transaction) }><i className="fa fa-close"></i></button>
-        </td>
-      </tr>
-    ));
-    return rows;
-  }
-
-
-  renderDataTable() {
-
-    if(this.props.transactions.loading || this.props.banks.loading) {
-      return <span className="loading">Loading, please wait...</span>
-    }
-
-    return (
-
-      <table>
-
-        <thead>
-          <tr>
-            <th width="10%">ID</th>
-            <th width="35%">Amount</th>
-            <th width="50%">Bank</th>
-            <th width="5%"></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          { this.renderDataRows() }
-        </tbody>
-
-      </table>
-
-    );
-  }
-
-
   render() {
 
     return (
@@ -62,7 +17,45 @@ class ViewTransactions extends Component {
         <div className="view-transactions content">
           <h3 className="page-head">View Transactions</h3>
 
-          { this.renderDataTable() }
+
+          <Choose>
+
+            <When condition={ this.props.transactions.loading || this.props.banks.loading }>
+              <span className="loading">Loading, please wait...</span>
+            </When>
+
+            <Otherwise>
+              <table>
+
+                <thead>
+                  <tr>
+                    <th width="10%">ID</th>
+                    <th width="35%">Amount</th>
+                    <th width="50%">Bank</th>
+                    <th width="5%"></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+
+                  <For each="transaction" index="index" of={ this.props.transactions.items }>
+                    <tr key={ transaction.id } className={ (index % 2 == 0) ? 'even' : 'odd'  }>
+                      <td className="numeric">{ transaction.id }</td>
+                      <td className="numeric">{ transaction.amount.toFixed(2) }</td>
+                      <td>{ this.props.banks.items.get(transaction.bankId).name }</td>
+                      <td>
+                        <button type="button" onClick={ () => this.props.confirm(transaction) }><i className="fa fa-close"></i></button>
+                      </td>
+                    </tr>
+                  </For>
+
+                </tbody>
+
+              </table>
+            </Otherwise>
+
+          </Choose>
+
 
         </div>
 
