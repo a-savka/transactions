@@ -78,10 +78,6 @@ export default function(state = INITIAL_STATE, action) {
           items: newItems
         };
 
-
-
-
-
   }
   return state;
 }

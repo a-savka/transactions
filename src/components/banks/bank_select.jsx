@@ -30,5 +30,4 @@ class BankSelect extends Component {
 
 }
 
-
 export default connect(state => state.banks)(BankSelect);

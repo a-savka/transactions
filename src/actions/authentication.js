@@ -28,9 +28,7 @@ export function login(fields) {
 
     dispatch(loginStart());
 
-    // axios.post('/api/login', fields)
     // Simulating request with get, can't post to static file
-
     fetch("/api/ok.json").then( response => {
       response.json().then( data => {
         if(!data.ok) {
