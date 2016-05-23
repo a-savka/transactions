@@ -1,3 +1,4 @@
+import 'whatwg-fetch';
 import * as types from './types';
 import { banksFetch } from './banks';
 import { transactionsFetch } from './transactions';

@@ -1,3 +1,4 @@
+import 'whatwg-fetch';
 import * as types from './types';
 import { browserHistory } from 'react-router';
 
