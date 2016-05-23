@@ -3,31 +3,37 @@
 //    label - optional - text for field label
 //    customClassName - optional - custom class name for container
 
-import React from 'react';
+import React, { Component } from 'react';
 
 require('../../stylesheets/common/field_container.scss');
 
-function getFieldContainerClass(field, baseClassName) {
-  return `${baseClassName}${ field && field.touched && field.invalid ? ' has-error' : '' }`;
-}
+export default class FieldContainer extends Component {
 
-function getFieldError(field) {
-  return field && field.touched && field.invalid ? field.error : "";
-}
+  fieldHasError() {
+    return this.props.field && this.props.field.touched && this.props.field.invalid;
+  }
 
-export default (props) => {
+  getFieldContainerClass(baseClassName) {
+    return `${baseClassName}${ this.fieldHasError() ? ' has-error' : '' }`;
+  }
 
-  return (
+  getFieldError() {
+    return this.fieldHasError() ? this.props.field.error : "";
+  }
 
-    <div className={ getFieldContainerClass(props.field, 'field-container ' + (props.customClassName || "")) }>
-      <div className="field-label"><span>{ props.label ? `${props.label}:` : "" }</span></div>
-      <div className="field-wrapper">
-        { props.children }
-        <div className="field-error-details">{ getFieldError(props.field) }</div>
+  render() {
+
+    return (
+      <div className={ this.getFieldContainerClass('field-container ' + (this.props.customClassName || "")) }>
+        <div className="field-label"><span>{ this.props.label ? `${this.props.label}:` : "" }</span></div>
+        <div className="field-wrapper">
+          { this.props.children }
+          <div className="field-error-details">{ this.getFieldError() }</div>
+        </div>
+        <span className="clear">&nbsp;</span>
       </div>
-      <span className="clear">&nbsp;</span>
-    </div>
+    );
 
-  );
+  }
 
 }
