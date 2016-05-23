@@ -1,5 +1,4 @@
 import * as types from './types';
-import axios from 'axios';
 import { browserHistory } from 'react-router';
 
 // nextTransactionId used to simulate autoincrementing transaction id from server
@@ -32,30 +31,31 @@ export function transactionsFetch() {
 
     dispatch(transactionsFetchStart());
 
-    axios.get('/api/transactions.json?fetch')
-      .then(function(response) {
-        if(!response.data) {
+    fetch('/api/transactions.json').then( response => {
+      response.json().then( data => {
+
+        if(!data) {
           return dispatch(transactionsFetchError("Transactions can't be loaded."));
         }
 
         // Simulate server side data storage
         if(localStorage.transactions) {
-          response.data = JSON.parse(localStorage.transactions);
+          data = JSON.parse(localStorage.transactions);
         }
 
         // Line below needed for transaction id simulation
-        if(response.data.length) nextTransactionId = response.data[response.data.length-1].id;
+        if(data.length) nextTransactionId = data[data.length-1].id;
 
-        dispatch(transactionsFetchSuccess(response.data));
-      })
-      .catch(function(error) {
-        dispatch(transactionsFetchError("Transactions can't be loaded."));
+        dispatch(transactionsFetchSuccess(data));
+
       });
+    })
+    .catch(function(error) {
+      dispatch(transactionsFetchError("Transactions can't be loaded."));
+    });
 
   };
 }
-
-
 
 
 function transactionsAddStart() {
@@ -85,28 +85,30 @@ export function transactionsAdd(fields) {
 
     dispatch(transactionsAddStart());
 
-    // axios.post('/api/transactions', fields)
     // simulate ajax request with get to ok.json
-    axios.get('/api/ok.json?addTransaction')
-      .then(function(response) {
-        if(!response.data.ok) {
+    fetch('/api/ok.json').then( response => {
+      response.json().then( data => {
+
+        if(!data.ok) {
           return dispatch(transactionsAddError("Error, transaction can't be added."));
         }
 
         // Code to simulate data received from server
-          response.data = {
-            id: ++nextTransactionId,
-            amount: parseFloat(fields.amount),
-            bankId: parseInt(fields.bankId)
-          };
+        data = {
+          id: ++nextTransactionId,
+          amount: parseFloat(fields.amount),
+          bankId: parseInt(fields.bankId)
+        };
         // End of code to simulate data received from server
 
-        dispatch(transactionsAddSuccess(response.data));
+        dispatch(transactionsAddSuccess(data));
         browserHistory.push("/");
-      })
-      .catch(function(error) {
-        dispatch(transactionsAddError("Error, transaction can't be added."));
+
       });
+    })
+    .catch(function(error) {
+      dispatch(transactionsAddError("Error, transaction can't be added."));
+    });
 
   };
 }
@@ -124,7 +126,6 @@ export function transactionsDeleteModalHide() {
     type: types.TRANSACTIONS_DELETE_MODAL_HIDE
   };
 }
-
 
 function transactionsDeleteStart() {
   return {
@@ -153,18 +154,18 @@ export function transactionsDelete(transaction) {
     dispatch(transactionsDeleteModalHide());
     dispatch(transactionsDeleteStart());
 
-    // axios.delete('/api/transactions/' + transaction.id, fields)
     // simulate ajax request with get to ok.json
-    axios.get('/api/ok.json?deleteTransaction')
-      .then(function(response) {
-        if(!response.data.ok) {
+    fetch('/api/ok.json').then( response => {
+      response.json().then( data => {
+        if(!data.ok) {
           return dispatch(transactionsAddError("Error, transaction can't be deleted."));
         }
         dispatch(transactionsDeleteSuccess(transaction.id));
-      })
-      .catch(function(error) {
-        dispatch(transactionsAddError("Error, transaction can't be deleted."));
       });
+    })
+    .catch(function(error) {
+      dispatch(transactionsAddError("Error, transaction can't be deleted."));
+    });
 
   };
 }

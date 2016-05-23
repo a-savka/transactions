@@ -1,5 +1,4 @@
 import * as types from './types';
-import axios from 'axios';
 import { banksFetch } from './banks';
 import { transactionsFetch } from './transactions';
 
@@ -30,18 +29,19 @@ export function login(fields) {
 
     // axios.post('/api/login', fields)
     // Simulating request with get, can't post to static file
-    axios.get('/api/ok.json?login')
-      .then(function(response) {
-        if(!response.data.ok) {
+
+    fetch("/api/ok.json").then( response => {
+      response.json().then( data => {
+        if(!data.ok) {
           return dispatch(loginError("Login attempt failed."));
         }
         dispatch(banksFetch());
         dispatch(transactionsFetch());
         dispatch(loginSuccess());
-      })
-      .catch(function(error) {
-        dispatch(loginError("Login attempt failed."));
       });
+    }).catch(function(error) {
+      dispatch(loginError("Login attempt failed."));
+    });
 
   };
 }
@@ -49,7 +49,7 @@ export function login(fields) {
 
 export function logout() {
     // we don't need anything from response
-    axios.get('/api/ok.json?logout');
+    fetch("/api/ok.json");
     return {
       type: types.LOGOUT
     };

@@ -1,5 +1,4 @@
 import * as types from './types';
-import axios from 'axios';
 
 function banksFetchStart() {
   return {
@@ -33,16 +32,13 @@ export function banksFetch(fields) {
 
     dispatch(banksFetchStart());
 
-    axios.get('/api/banks.json')
-      .then(function(response) {
-        if(!response.data) {
-          return dispatch(banksFetchError("Banks can't be loaded."));
-        }
-        dispatch(banksFetchSuccess(response.data.sort(bankComparator)));
-      })
-      .catch(function(error) {
-        dispatch(banksFetchError("Banks can't be loaded."));
+    fetch('/api/banks.json').then( response => {
+      response.json().then( data => {
+        dispatch(banksFetchSuccess(data.sort(bankComparator)));
       });
+    }).catch(function(error) {
+      dispatch(banksFetchError("Banks can't be loaded."));
+    });
 
   };
 }
