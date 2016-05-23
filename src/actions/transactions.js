@@ -4,6 +4,9 @@ import { browserHistory } from 'react-router';
 
 // nextTransactionId used to simulate autoincrementing transaction id from server
 let nextTransactionId = 0;
+if(localStorage.nextTransactionId) {
+  nextTransactionId = JSON.parse(localStorage.nextTransactionId);
+}
 
 function transactionsFetchStart() {
   return {
@@ -46,6 +49,7 @@ export function transactionsFetch() {
 
         // Line below needed for transaction id simulation
         if(data.length) nextTransactionId = data[data.length-1].id;
+        localStorage.nextTransactionId = JSON.stringify(nextTransactionId);
 
         dispatch(transactionsFetchSuccess(data));
 
@@ -100,6 +104,7 @@ export function transactionsAdd(fields) {
           amount: parseFloat(fields.amount),
           bankId: parseInt(fields.bankId)
         };
+        localStorage.nextTransactionId = JSON.stringify(nextTransactionId);
         // End of code to simulate data received from server
 
         dispatch(transactionsAddSuccess(data));

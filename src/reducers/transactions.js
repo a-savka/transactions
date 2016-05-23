@@ -78,6 +78,9 @@ export default function(state = INITIAL_STATE, action) {
           items: newItems
         };
 
+      case actionTypes.LOGOUT:
+        return INITIAL_STATE;
+
   }
   return state;
 }
