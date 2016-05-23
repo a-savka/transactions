@@ -1,37 +1,39 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-export default function(ComposedComponent) {
 
-  class Authentication extends Component {
+class RequireAuthentication extends Component {
 
-    static contextTypes = {
-      router: React.PropTypes.object
-    }
+  static contextTypes = {
+    router: React.PropTypes.object
+  }
 
-    componentWillMount() {
-      if(!this.props.authenticated) {
-        this.context.router.push('/login');
-      }
-    }
-
-    componentWillUpdate(nextProps) {
-      if(!nextProps.authenticated) {
-        this.context.router.push('/login');
-      }
-    }
-
-    render() {
-      return <ComposedComponent {...this.props}/>;
+  componentWillMount() {
+    if(!this.props.authenticated) {
+      this.context.router.push('/login');
     }
   }
 
-  function mapStateToProps(state) {
-    return {
-      authenticated: state.authentication.authenticated
-    };
+  componentWillUpdate(nextProps) {
+    if(!nextProps.authenticated) {
+      this.context.router.push('/login');
+    }
   }
 
-  return connect(mapStateToProps)(Authentication);
+  render() {
+    return (
+      <div>
+        { this.props.children }
+      </div>
+    );
+  }
 
 }
+
+function mapStateToProps(state) {
+  return {
+    authenticated: state.authentication.authenticated
+  };
+}
+
+export default connect(mapStateToProps)(RequireAuthentication);
