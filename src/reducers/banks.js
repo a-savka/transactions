@@ -3,7 +3,7 @@ import * as actionTypes from '../actions/types';
 const INITIAL_STATE = {
   items: new Map(),
   loading: false
-}
+};
 
 export default function banksReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
@@ -25,7 +25,7 @@ export default function banksReducer(state = INITIAL_STATE, action) {
       return {
         loading: false,
         items: new Map(action.payload.map(item => [item.id, item]))
-      }
+      };
 
   }
   return state;

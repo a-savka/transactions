@@ -20,7 +20,7 @@ class DeleteConfirm extends Component {
         onConfirmed={ () => this.props.onConfirmed(tran) }
         onClosed={ () => this.props.onClosed() }
         />
-    )
+    );
 
   }
 

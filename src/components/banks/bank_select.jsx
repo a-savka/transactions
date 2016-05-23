@@ -6,7 +6,7 @@ class BankSelect extends Component {
   renderOptions() {
 
     if(this.props.loading) {
-      return <option key={ -1 } value="-1">Loading...</option>
+      return <option key={ -1 } value="-1">Loading...</option>;
     }
 
     let banks = [...this.props.items.values()].map(

@@ -18,7 +18,7 @@ class AddTransaction extends Component {
   }
 
   getSubmitButtonIcon() {
-    return this.isDisabled() ? "fa fa-spin fa-spinner" : "fa fa-check"
+    return this.isDisabled() ? "fa fa-spin fa-spinner" : "fa fa-check";
   }
 
   renderError() {
@@ -27,7 +27,7 @@ class AddTransaction extends Component {
         <FieldContainer>
           <span>{ this.props.errorMessage }</span>
         </FieldContainer>
-      )
+      );
     }
     return "";
   }

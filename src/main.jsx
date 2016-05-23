@@ -21,5 +21,5 @@ document.addEventListener("DOMContentLoaded", function() {
       </Router>
     </Provider>,
     document.querySelector('#app_transactions')
-  )
+  );
 });

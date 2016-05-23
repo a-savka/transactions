@@ -64,7 +64,7 @@ class Login extends Component {
 
 function validate(values) {
 
-  let errors = {}
+  let errors = {};
 
   if(!values.username) {
     errors.username = "Please provide username";

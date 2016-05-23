@@ -98,7 +98,7 @@ export function transactionsAdd(fields) {
             id: ++nextTransactionId,
             amount: parseFloat(fields.amount),
             bankId: parseInt(fields.bankId)
-          }
+          };
         // End of code to simulate data received from server
 
         dispatch(transactionsAddSuccess(response.data));
@@ -116,13 +116,13 @@ export function transactionsDeleteModalShow(transaction) {
   return {
     type: types.TRANSACTIONS_DELETE_MODAL_SHOW,
     payload: transaction
-  }
+  };
 }
 
 export function transactionsDeleteModalHide() {
   return {
     type: types.TRANSACTIONS_DELETE_MODAL_HIDE
-  }
+  };
 }
 
 

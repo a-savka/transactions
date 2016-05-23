@@ -52,5 +52,5 @@ export function logout() {
     axios.get('/api/ok.json?logout');
     return {
       type: types.LOGOUT
-    }
+    };
 }

@@ -80,7 +80,7 @@ function mapStateToProps({ transactions, banks }) {
   return {
     transactions,
     banks
-  }
+  };
 }
 
 
