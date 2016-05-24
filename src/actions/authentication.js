@@ -47,9 +47,11 @@ export function login(fields) {
 
 
 export function logout() {
-    // we don't need anything from response
-    fetch("/api/ok.json");
-    return {
-      type: types.LOGOUT
+    return (dispatch) => {
+      // we don't need anything from response
+      fetch("/api/ok.json");
+      dispatch(
+        { type: types.LOGOUT }
+      );
     };
 }
