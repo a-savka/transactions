@@ -13,7 +13,7 @@ class Login extends Component {
 
   checkAuthentication(props) {
     if(props.authenticated) {
-      this.context.router.push("/");
+      this.context.router.push(this.props.nextRoute ? this.props.nextRoute : "/");
     }
   }
 

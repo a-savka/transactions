@@ -2,7 +2,8 @@ import * as actionTypes from '../actions/types';
 
 const INITIAL_STATE = {
   authenticated: false,
-  loading: false
+  loading: false,
+  loginToPage: "/"
 };
 
 export default function authenticationReducer(state = INITIAL_STATE, action) {
@@ -10,8 +11,10 @@ export default function authenticationReducer(state = INITIAL_STATE, action) {
 
     case actionTypes.LOGIN_START:
       return {
+        ...state,
         authenticated: false,
-        loading: true
+        loading: true,
+        errorMessage: ""
       };
 
     case actionTypes.LOGIN_SUCCESS:
@@ -22,6 +25,7 @@ export default function authenticationReducer(state = INITIAL_STATE, action) {
 
     case actionTypes.LOGIN_ERROR:
       return {
+        ...state,
         authenticated: false,
         loading: false,
         errorMessage: action.payload
@@ -29,8 +33,15 @@ export default function authenticationReducer(state = INITIAL_STATE, action) {
 
     case actionTypes.LOGOUT:
       return {
+        ...state,
         authenticated: false,
         loading: false
+      };
+
+    case actionTypes.LOGIN_TO_PAGE:
+      return {
+        ...state,
+        nextRoute:  action.payload
       };
 
   }

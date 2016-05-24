@@ -1,4 +1,5 @@
 import { browserHistory } from 'react-router';
+import { loginToPage } from './actions/authentication';
 
 function getAthenticated(store) {
   return store.getState().authentication.authenticated;
@@ -7,6 +8,7 @@ function getAthenticated(store) {
 export default function requireAuth(store) {
 
   let wasAuthenticated = getAthenticated(store);
+  let lastPathName = "";
 
   store.subscribe(() => {
     const authenticated = getAthenticated(store);
@@ -19,7 +21,9 @@ export default function requireAuth(store) {
   return (nextState, replace) => {
     if(!getAthenticated(store)) {
       replace("/login");
+      store.dispatch(loginToPage(nextState.location.pathname));
     }
+
   };
 
 }

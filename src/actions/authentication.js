@@ -22,6 +22,13 @@ function loginError(payload) {
   };
 }
 
+export function loginToPage(pageRoute) {
+  return {
+    type: types.LOGIN_TO_PAGE,
+    payload: pageRoute
+  };
+}
+
 
 export function login(fields) {
   return (dispatch) => {
