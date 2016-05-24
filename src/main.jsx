@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { connect } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import requireAuth from './require_auth';
 
 import store from './store';
 
+import PageLayout from './components/page_layout';
 import Login from './components/login';
 import AddTransaction from './components/transactions/add';
 import ViewTransactions from './components/transactions/view';
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
       <Router history={ browserHistory }>
         <Route path="/">
           <Route path="login" component={ Login }/>
-          <Route onEnter={ requireAuth(store) }>
+          <Route component={ PageLayout } onEnter={ requireAuth(store) }>
             <IndexRoute component={ ViewTransactions } />
             <Route path="add" component={ AddTransaction } />
           </Route>

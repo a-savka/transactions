@@ -1,11 +1,15 @@
 import { browserHistory } from 'react-router';
 
+function getAthenticated(store) {
+  return store.getState().authentication.authenticated;
+}
+
 export default function requireAuth(store) {
 
-  let wasAuthenticated = false;
+  let wasAuthenticated = getAthenticated(store);
 
   store.subscribe(() => {
-    const authenticated = store.getState().authentication.authenticated;
+    const authenticated = getAthenticated(store);
     if(wasAuthenticated && !authenticated) {
       browserHistory.push("/login");
     }
@@ -13,7 +17,7 @@ export default function requireAuth(store) {
   });
 
   return (nextState, replace) => {
-    if(!store.getState().authentication.authenticated) {
+    if(!getAthenticated(store)) {
       replace("/login");
     }
   };

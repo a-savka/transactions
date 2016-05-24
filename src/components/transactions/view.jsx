@@ -13,7 +13,6 @@ class ViewTransactions extends Component {
     return (
 
       <div>
-        <Header />
         <div className="view-transactions content">
           <h3 className="page-head">View Transactions</h3>
 

@@ -27,7 +27,6 @@ class AddTransaction extends Component {
 
     return (
       <div>
-        <Header />
         <div className="add-transaction content">
 
           <form className="add-transaction-form" onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
