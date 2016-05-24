@@ -8,7 +8,6 @@ function getAthenticated(store) {
 export default function requireAuth(store) {
 
   let wasAuthenticated = getAthenticated(store);
-  let lastPathName = "";
 
   store.subscribe(() => {
     const authenticated = getAthenticated(store);
