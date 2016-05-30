@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
       <Router history={ browserHistory }>
         <Route path="/">
           <Route path="login" component={ Login }/>
-          <Route component={ PageLayout } onEnter={ requireAuth(store) }>
+          <Route component={ PageLayout } { ...requireAuth(store) }>
             <IndexRoute component={ ViewTransactions } />
             <Route path="add" component={ AddTransaction } />
           </Route>

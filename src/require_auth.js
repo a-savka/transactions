@@ -17,12 +17,16 @@ export default function requireAuth(store) {
     wasAuthenticated = authenticated;
   });
 
-  return (nextState, replace) => {
-    if(!getAthenticated(store)) {
-      replace("/login");
+  return {
+    onEnter: (nextState, replace) => {
+      if(!getAthenticated(store)) {
+        replace("/login");
+      }
+      store.dispatch(loginToPage(nextState.location.pathname));
+    },
+    onChange: (prevState, nextState) => {
       store.dispatch(loginToPage(nextState.location.pathname));
     }
-
   };
 
 }
